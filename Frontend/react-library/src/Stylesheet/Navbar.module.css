@@ -1,0 +1,14 @@
+.navbar {
+    width: 99%;
+    height: 40px;
+    margin: auto;
+    margin-top: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.title {
+    list-style: none;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
