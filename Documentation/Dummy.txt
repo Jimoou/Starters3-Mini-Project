@@ -1,0 +1,30 @@
+-- 학생
+insert into user values ("dummy1","1233","김O미","서울시 OO구 OOO길 123-00 ","01012341234","1994-04-02","dummy1@Udemy.com",0,now(),1);
+insert into user values ("dummy2","1233","고O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy2@Udemy.com",0,now(),1);
+insert into user values ("dummy3","1233","강O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy3@Udemy.com",0,now(),1);
+insert into user values ("dummy4","1233","수O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy4@Udemy.com",0,now(),1);
+insert into user values ("dummy5","1233","정O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy5@Udemy.com",0,now(),1);
+insert into user values ("dummy6","1233","이O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy6@Udemy.com",0,now(),1);
+insert into user values ("dummy7","1233","한O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy7@Udemy.com",0,now(),1);
+insert into user values ("dummy8","1233","곽O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy8@Udemy.com",0,now(),1);
+insert into user values ("dummy9","1233","조O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy9@Udemy.com",0,now(),1);
+insert into user values ("dummy10","1233","유O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy10@Udemy.com",0,now(),1);
+insert into user values ("dummy11","1233","김O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy11@Udemy.com",0,now(),2);
+insert into user values ("dummy12","1233","이O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy12@Udemy.com",0,now(),2);
+insert into user values ("dummy13","1233","김O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy13@Udemy.com",0,now(),2);
+insert into user values ("dummy14","1233","임O미","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy14@Udemy.com",0,now(),2);
+
+-- 강사
+insert into user values ("Teacher","1233","조O희","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy16@Udemy.com",1,now(),0);
+
+-- 관리자
+insert into user values ("Manager1","1233","사O","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy16@Udemy.com",2,now(),0);
+insert into user values ("Manager2","1233","리O","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy16@Udemy.com",2,now(),0);
+insert into user values ("Manager3","1233","스O라","서울시 OO구 OOO길 123-00","01012341234","1994-04-02","dummy16@Udemy.com",2,now(),0);
+
+-- @&A
+insert into Board(board_title, user_id, board_content, board_at) values ("더미질문입니다1.","dummy6","더미데이터 질문사항입니다.",now());
+insert into Board(board_title, user_id, board_content, board_at) values ("더미질문입니다2.","dummy1","더미데이터 질문사항입니다.",now());
+insert into Board(board_title, user_id, board_content, board_at) values ("더미질문입니다3.","dummy3","더미데이터 질문사항입니다.",now());
+insert into Board(board_title, user_id, board_content, board_at) values ("더미질문입니다4.","dummy4","더미데이터 질문사항입니다.",now());
+insert into Board(board_title, user_id, board_content, board_at) values ("더미질문입니다5.","dummy5","더미데이터 질문사항입니다.",now());
