@@ -5,44 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("boardservice")
+@Service("userservice")
 public class UserServiceImpl implements UserService {
 	@Autowired
-	UserDAO dao;
+	UserDAO userDao;
 	
-	@Override
-	public int getTotalBoard() {
-		return dao.getTotalBoard();
-	}
 
 	@Override
-	public List<UserDTO> getBoardList(int limit) {
-		return dao.getBoardList(limit);
+	public List<UserDTO> userList() {
+		return userDao.userList();
 	}
+
 
 	@Override
-	public int viewUp(UserDTO dto) {
-		return dao.viewUp(dto);
+	public UserDTO oneUser(String user_Id) {
+		return userDao.oneUser(user_Id);
 	}
-
-	@Override
-	public UserDTO oneBoard(int seq) {
-		return dao.oneBoard(seq);
-	}
-
-	@Override
-	public int updateBoard(UserDTO dto) {
-		return dao.updateBoard(dto);
-	}
-
-	@Override
-	public int deleteBoard(int seq) {
-		return dao.deleteBoard(seq);
-	}
-
-	@Override
-	public int insertBoard(UserDTO dto) {
-		return dao.insertBoard(dto);
-	}
-
+	
 }

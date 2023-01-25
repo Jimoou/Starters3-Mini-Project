@@ -4,5 +4,11 @@
 
  <mapper namespace="com.example.LearningManagementSystem.User.UserDAO">
  
+ 	<select id="userList" resultType="userdto">
+ 		select * from user where User_Status not in(0,2);
+ 	</select>
  	
+ 	<select id="oneUser" parameterType="String" resultType="userdto">
+ 		select * from user where user_Id=#{user_Id}
+ 	</select>
  </mapper>

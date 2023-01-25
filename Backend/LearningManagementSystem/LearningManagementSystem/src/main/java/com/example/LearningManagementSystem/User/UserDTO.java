@@ -7,12 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Component("barddto")
+@Component("userdto")
 public class UserDTO {
-	// create table (컬럼 순서와 동일하게)
-	int seq;
-	String title, contents, writer;
-	int viewcount;
-	String writingtime;
-	
+	String user_Id, user_Pw, user_Name, user_Addr, user_phone, user_Brith, user_Email;
+	int user_Admin;
+	String user_RegDate;
+	int user_Status;
 }

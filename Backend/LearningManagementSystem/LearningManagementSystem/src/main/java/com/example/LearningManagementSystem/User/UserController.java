@@ -1,84 +1,34 @@
 package com.example.LearningManagementSystem.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
-import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class UserController {
 	@Autowired
-	@Qualifier("boardservice")
-	UserService service;
+	@Qualifier("userservice")
+	private UserService userService;
 	
-	@RequestMapping("/board")
-	public String boardstart() {
-		return "board/board";
+	@GetMapping("/User")
+	public List<Object> user() {
+		List<Object> all = new ArrayList<Object>();
+		all.add(userService.userList());
+		return all;
 	}
 	
-	@RequestMapping("/boardlist")
-	public ModelAndView boardlist(@RequestParam(value = "page", required =false, defaultValue = "1")
-	int page) {
-	// 게시판리스트 만들기
-	/* 1.select count(*)from board; board-int-model저장
-	 * 2.select * from board limit (page-1)*3 , 3개씩 -list-model저장
-	 * 3. board/list.jsp
-	 * */
-		int countboard = service.getTotalBoard();
-		int limit = (page-1)*3;
-		List<UserDTO> list = service.getBoardList(limit);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("totalcount", countboard);
-		mv.addObject("list", list);
-		mv.setViewName("board/list");
-		return mv;
-	}
+	@GetMapping("/User/{user_Id}")
+	public List<Object> oneUser(@PathVariable("user_Id") String user_Id) {
+		List<Object> all = new ArrayList<Object>();
+		all.add(userService.oneUser(user_Id));
+		return all;
+	}	
 	
-	@RequestMapping("/oneboard")
-	public ModelAndView oneboard(int seq) {
-		UserDTO dto = service.oneBoard(seq);
-		service.viewUp(dto);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("oneboard", dto);
-		mv.setViewName("board/oneboard");
-		return mv;
-	}
-	
-	@PostMapping("updateboard")
-	public ModelAndView updateboard(UserDTO dto) {
-		ModelAndView mv = new ModelAndView();
-		service.updateBoard(dto);
-		mv.addObject("result","수정되었습니다.");
-		String viewname ="redirect:/oneboard?seq=" + dto.getSeq();
-		mv.setViewName(viewname);
-		return mv; 
-	}
-	
-	@GetMapping("deleteboard")
-	public String deleteboard(int seq) {
-		service.deleteBoard(seq);
-		return "board/board";
-	}
-	
-	@GetMapping("/insertboard")
-	public String insertboard() {	
-		return "board/insertboard";
-	}
-	
-	@PostMapping("/insertboard")
-	public ModelAndView insertboardprocess(UserDTO dto, HttpSession session){
-		ModelAndView mv = new ModelAndView();
-		service.insertBoard(dto);	
-		mv.setViewName("redirect:/boardlist");			
-		return mv;
-	}
 	
 }
