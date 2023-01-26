@@ -11,7 +11,7 @@ export const ShowStatus: React.FC<{ status: AttendanceModel }> = (props) => {
       <div>
         {Values.map((value: any) => (
           <>
-            <TableCell className={styles.cell} align="center">{value}</TableCell>
+            <TableCell align="center"><p className={styles.cell}>{value}</p></TableCell>
           </>
         ))}
       </div>

@@ -1,21 +1,21 @@
 package com.example.LearningManagementSystem.Grade;
 
-import java.util.List;
-import java.util.Map;
-
+import com.example.LearningManagementSystem.Grade.Extra.ExtraDTO;
+import com.example.LearningManagementSystem.Grade.Extra.ExtraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.example.LearningManagementSystem.extra.ExtraDTO;
-import com.example.LearningManagementSystem.extra.ExtraService;
+import java.util.List;
+
+
+
 
 
 
 @RestController
+@CrossOrigin
+@RequestMapping("/api")
 public class GradeController {
 	
 	@Autowired
@@ -30,7 +30,7 @@ public class GradeController {
 //	전체구성원성적 목록
 	@GetMapping("/grade")
 	public List<Object> getGradelist() {
-		List<Object> list = (List<Object>)gradeservice.getGradelist();
+		List<Object> list = gradeservice.getGradelist();
 		return list;
 	}
 	
@@ -48,15 +48,13 @@ public class GradeController {
 //	개인별성적 입력
 	@PostMapping("/grade/insert/{user_id}/{grade_type}")
 	public void InsertUserGrade(@PathVariable String user_id,GradeDTO dto) {
-		int result = gradeservice.InsertUserGrade(dto);
-		System.out.println("인서트성공 "+result);
+		gradeservice.InsertUserGrade(dto);
 	}
 
 //	개인별성적 수정
 	@PostMapping("/grade/update/{user_id}/{grade_type}")
 	public void UpdateUserGrade(@PathVariable String user_id,GradeDTO dto) {
-		int result = gradeservice.UpdateUserGrade(dto);
-		System.out.println("업데이트성공 "+result);
+		gradeservice.UpdateUserGrade(dto);
 	}
-	
+
 }

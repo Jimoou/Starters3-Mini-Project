@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface ExtraService {
 
-	int InsertUserExtra(ExtraDTO dto);
+	void InsertUserExtra(ExtraDTO dto);
 
 	List<ExtraDTO> getUserExtra(String user_id);
 
-	int UpdateUserExtra(ExtraDTO dto);
+	void UpdateUserExtra(ExtraDTO dto);
 
 }

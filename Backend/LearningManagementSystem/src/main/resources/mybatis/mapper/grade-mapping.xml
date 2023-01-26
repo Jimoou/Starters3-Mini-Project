@@ -14,29 +14,29 @@
         <result property="user_id" column="E.User_Id"/>
     </resultMap>
     <select id="getGradelist" resultMap="getGradelistMap" parameterType="String">
-        select G.User_id,
-               sum(case when day (G.Grade_at) = 10 and Grade_Type = 1 then G.Grade_Score end) as "1stMulti",
-               sum(case when day (G.Grade_at) = 10 and Grade_Type = 2 then G.Grade_Score end) as "1stTask",
-               sum(case when day (G.Grade_at) = 15 and Grade_Type = 1 then G.Grade_Score end) as "2edMulti",
-               sum(case when day (G.Grade_at) = 15 and Grade_Type = 2 then G.Grade_Score end) as "2edTask",
-               sum(case when day (G.Grade_at) = 20 and Grade_Type = 1 then G.Grade_Score end) as "3rdMulti",
-               sum(case when day (G.Grade_at) = 20 and Grade_Type = 2 then G.Grade_Score end) as "3rdTask",
-               sum(case when day (G.Grade_at) = 30 and Grade_Type = 1 then G.Grade_Score end) as "FinalMulti",
-               sum(case when day (G.Grade_at) = 30 and Grade_Type = 2 then G.Grade_Score end) as "FinalTask",
-               round(((Extra_self + Extra_Attend + Extra_will) / 3 * 0.2), 2)                 as "Capabilities",
-               round(((Extra_Blog + Extra_Udemy) / 2 * 0.1), 2)                               as "Submit",
-               round(Extra_Final * 0.4)                                                       as "Final",
+        select G.user_id,
+               sum(case when day (G.grade_at) = 10 and grade_type = 1 then G.grade_score end) as "1stMulti",
+               sum(case when day (G.grade_at) = 10 and grade_type = 2 then G.grade_score end) as "1stTask",
+               sum(case when day (G.grade_at) = 15 and grade_type = 1 then G.grade_score end) as "2edMulti",
+               sum(case when day (G.grade_at) = 15 and grade_type = 2 then G.grade_score end) as "2edTask",
+               sum(case when day (G.grade_at) = 20 and grade_type = 1 then G.grade_score end) as "3rdMulti",
+               sum(case when day (G.grade_at) = 20 and grade_type = 2 then G.grade_score end) as "3rdTask",
+               sum(case when day (G.Grade_at) = 30 and grade_type = 1 then G.grade_score end) as "FinalMulti",
+               sum(case when day (G.grade_at) = 30 and Grade_Type = 2 then G.grade_score end) as "FinalTask",
+               round(((extra_self + extra_Attend + extra_will) / 3 * 0.2), 2)                 as "Capabilities",
+               round(((extra_blog + extra_udemy) / 2 * 0.1), 2)                               as "Submit",
+               round(extra_final * 0.4)                                                       as "Final",
                round(
-                           ((sum(case when day (G.Grade_at) = 30 and Grade_Type = 1 then G.Grade_Score end)
-                               + sum(case when day (G.Grade_at) = 30 and Grade_Type = 2 then G.Grade_Score end)) * 0.3)
-                           + round(((Extra_self + Extra_Attend + Extra_will) / 3 * 0.2), 2) +
-                           round(((Extra_Blog + Extra_Udemy) / 2 * 0.1), 2)
-                           + round(Extra_Final * 0.4)
+                           ((sum(case when day (G.grade_at) = 30 and grade_type = 1 then G.grade_score end)
+                               + sum(case when day (G.grade_at) = 30 and grade_type = 2 then G.grade_score end)) * 0.3)
+                           + round(((extra_self + extra_attend + extra_will) / 3 * 0.2), 2) +
+                           round(((extra_blog + extra_udemy) / 2 * 0.1), 2)
+                           + round(extra_final * 0.4)
                    )                                                                          as "Total",
                RANK()                                                                            OVER(ORDER BY Total DESC) "Rank"
         from grade G
-                 left join extra E on E.User_Id = G.User_Id
-        group by G.User_Id;
+                 left join extra E on E.user_Id = G.user_Id
+        group by G.user_id;
     </select>
     <select id="getUserGrade" resultType="gradedto">
         select *

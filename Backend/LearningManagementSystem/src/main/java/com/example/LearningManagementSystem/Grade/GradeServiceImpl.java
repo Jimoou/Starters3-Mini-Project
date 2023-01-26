@@ -3,12 +3,14 @@ package com.example.LearningManagementSystem.Grade;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 
 @Service("gradeservice")
 public class GradeServiceImpl implements GradeService{
 	@Autowired
+	@Qualifier("gradedao")
 	GradeDAO dao;
 
 	@Override
@@ -22,13 +24,13 @@ public class GradeServiceImpl implements GradeService{
 	}
 
 	@Override
-	public int InsertUserGrade(GradeDTO dto) {
-		return dao.InsertUserGrade(dto);
+	public void InsertUserGrade(GradeDTO dto) {
+		dao.InsertUserGrade(dto);
 	}
 
 	@Override
-	public int UpdateUserGrade(GradeDTO dto) {
-		return dao.UpdateUserGrade(dto);
+	public void UpdateUserGrade(GradeDTO dto) {
+		dao.UpdateUserGrade(dto);
 	}
 
 	

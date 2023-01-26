@@ -6,11 +6,11 @@
 
     <select id="userAttendance" parameterType="String" resultType="attendanceuserdto">
         SELECT user_name,
-               Attendance_Date,
-               date_format(Attendance_Time, '%T') as Attendance_Time,
-               Attendance_Status
-        FROM Attendance AS A
-                 LEFT JOIN document AS D ON A.Attendance_No = D.Attendance_No
+               attendance_date,
+               date_format(attendance_time, '%T') as attendance_time,
+               attendance_status
+        FROM attendance AS A
+                 LEFT JOIN document AS D ON A.attendance_no = D.attendance_no
                  LEFT JOIN user AS U ON A.user_id = U.user_id
         WHERE A.user_id = #{id}
         /*AND Attendance_Status !=1;*/
@@ -18,12 +18,12 @@
 
     <select id="attendancelist" parameterType="String" resultType="attendanceuserdto">
         SELECT U.user_name  as user_name,
-               Attendance_Date,
-               date_format(Attendance_Time, '%T') as Attendance_Time,
-               Attendance_Status,
-               Attendance_etc
-        from Attendance AS A
+               attendance_date,
+               date_format(attendance_time, '%T') as attendance_time,
+               attendance_status,
+               attendance_etc
+        from attendance AS A
                  JOIN user AS U ON A.user_id = U.user_id
-        ORDER BY U.user_name, Attendance_Date ASC;
+        ORDER BY U.user_name, attendance_date ASC;
     </select>
 </mapper>
