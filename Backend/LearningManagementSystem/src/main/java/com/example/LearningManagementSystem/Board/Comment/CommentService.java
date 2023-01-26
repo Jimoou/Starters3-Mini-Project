@@ -1,10 +1,10 @@
-package com.example.LearningManagementSystem.Service;
+package com.example.LearningManagementSystem.Board.Comment;
 
-import com.example.LearningManagementSystem.Dto.CommentDto;
-import com.example.LearningManagementSystem.Entity.Board.Board;
-import com.example.LearningManagementSystem.Entity.Board.BoardRepository;
-import com.example.LearningManagementSystem.Entity.Board.Comment;
-import com.example.LearningManagementSystem.Entity.Board.CommentRepository;
+import com.example.LearningManagementSystem.Board.Comment.CommentDto;
+import com.example.LearningManagementSystem.Board.Board;
+import com.example.LearningManagementSystem.Board.BoardRepository;
+import com.example.LearningManagementSystem.Board.Comment.Comment;
+import com.example.LearningManagementSystem.Board.Comment.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

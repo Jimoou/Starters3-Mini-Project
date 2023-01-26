@@ -1,4 +1,4 @@
-package com.example.LearningManagementSystem.Entity.Board;
+package com.example.LearningManagementSystem.Board.Comment;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

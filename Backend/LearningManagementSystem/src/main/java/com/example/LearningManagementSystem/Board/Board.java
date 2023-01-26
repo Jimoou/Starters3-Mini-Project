@@ -1,5 +1,6 @@
-package com.example.LearningManagementSystem.Entity.Board;
+package com.example.LearningManagementSystem.Board;
 
+import com.example.LearningManagementSystem.Board.Comment.Comment;
 import jakarta.persistence.*;
 import lombok.*;
 

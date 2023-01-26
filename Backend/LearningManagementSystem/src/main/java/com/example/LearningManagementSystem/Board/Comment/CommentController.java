@@ -1,12 +1,9 @@
-package com.example.LearningManagementSystem.Controller;
+package com.example.LearningManagementSystem.Board.Comment;
 
 
-import com.example.LearningManagementSystem.Dto.CommentDto;
-import com.example.LearningManagementSystem.Service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor

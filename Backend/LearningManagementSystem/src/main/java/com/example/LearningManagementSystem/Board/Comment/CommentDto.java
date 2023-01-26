@@ -1,11 +1,9 @@
-package com.example.LearningManagementSystem.Dto;
+package com.example.LearningManagementSystem.Board.Comment;
 
-import com.example.LearningManagementSystem.Entity.Board.Board;
-import com.example.LearningManagementSystem.Entity.Board.Comment;
+import com.example.LearningManagementSystem.Board.Board;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
