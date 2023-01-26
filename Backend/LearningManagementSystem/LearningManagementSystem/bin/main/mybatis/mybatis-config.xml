@@ -3,6 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+	<!-- UserDTO 설정  -->
 		<typeAlias type="com.example.LearningManagementSystem.User.UserDTO" alias="userdto"/>
 		
 	</typeAliases>

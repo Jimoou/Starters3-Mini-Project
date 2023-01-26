@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+// User main scan설정
 @ComponentScan(basePackages = {"com.example.LearningManagementSystem.User"})
 @MapperScan(basePackages = {"com.example.LearningManagementSystem.User"})
 public class LearningManagementSystemApplication {

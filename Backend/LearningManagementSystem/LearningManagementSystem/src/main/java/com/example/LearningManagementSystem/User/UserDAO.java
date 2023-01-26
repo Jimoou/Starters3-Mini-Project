@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
-
+// UserDAO
 @Mapper
 @Repository("userdao")
 public interface UserDAO {
