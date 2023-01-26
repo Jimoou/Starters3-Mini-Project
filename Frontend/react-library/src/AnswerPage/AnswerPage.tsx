@@ -12,12 +12,6 @@ import ArticleModel from '../Models/ArticleModel';
 import { SpinnerLoading } from '../Util/SpinnerLoading';
 import { Link } from 'react-router-dom';
 
-
-function createData(title: string, name: string, createdAt: string) {
-  return { title, name, createdAt};
-}
-
-
 export default function AnswerPage() {
     const [articles, setArticles] = useState<ArticleModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -76,7 +70,9 @@ export default function AnswerPage() {
   return (
     <>
     <h1 className={styles.header}>Q&A 답변하기</h1>
+    
     <div className={styles.main}>
+    <hr/>
     <TableContainer component={Paper} className={styles.tablecontainer}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead className={styles.tablehead}>

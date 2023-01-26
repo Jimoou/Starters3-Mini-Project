@@ -6,6 +6,8 @@ import { Sidebar } from "./HomePage/Components/Sidebar";
 import Navbar from "./NavbarAndFooter/Navbar";
 import AnswerPage from "./AnswerPage/AnswerPage";
 import { Answer } from "./AnswerPage/Components/Answer";
+import UserPage from "./UserPage/UserPage";
+import { DetailUser } from "./UserPage/Components/DetailUser";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/home" element={<HomePage />} />
             <Route path="/answer" element={<AnswerPage />} />
             <Route path="/boards/:articleId" element={<Answer />} />
+            <Route path="/users" element={<UserPage />} />
+            <Route path="/users/:userId" element={<DetailUser />} />
           </Routes>
         </div>
       </div>
