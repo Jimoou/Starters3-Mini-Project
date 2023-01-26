@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="Attendance.AttendanceDAO">
+
+	<select id="attendancelist" resultType="attendancedto">
+		select * from Attendance
+	</select>
+
+	<select id="userAttendance" parameterType="String" resultType="attendancedto">
+		select * from Attendance WHERE User_id=#{id};
+	</select>
+
+	<select id="userUnAttendance" parameterType="String" resultType="attendancedto">
+		SELECT * from Attendance AS A LEFT JOIN document AS D ON A.Attendance_No=D.Attendance_No WHERE A.User_id=#{id} AND Attendance_Status!=1;
+	</select>
+
+</mapper>
