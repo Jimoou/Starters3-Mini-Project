@@ -1,11 +1,9 @@
-package Attendance;
+package com.example.LearningManagementSystem.Attendance;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public class AttendanceUserDTO {
-
-
 
     String User_Name;
     String Attendance_Date;
