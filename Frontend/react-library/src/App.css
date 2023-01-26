@@ -8,23 +8,16 @@
   font-weight: normal;
   font-style: normal;
 }
-
-.App-link {
-  color: #61dafb;
-}
 .main {
   display: flex;
-  flex-direction: row;
   width: 99%;
   margin: auto;
 }
 .menu {
   width: 15%;
 }
-
 .view {
   width: 85%;
-  height: 90vh;
   margin: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
