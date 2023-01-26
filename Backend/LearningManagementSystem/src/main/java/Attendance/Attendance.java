@@ -8,16 +8,33 @@ import java.util.Date;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.stereotype.Component;
 
-@Component
-public class AttendanceDTO {
+@Entity
+@EnableJpaAuditing
+@NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+public class Attendance {
 
+//    String Attendance_No;
+//    String User_id;
+//    Date Attendance_Date;
+//    Date Attendance_Time;
+//    int Attendance_Status;
+//    String Attendance_etc;
+
+    @Id
+    @Column
     String Attendance_No;
+
+    @Column
     String User_id;
+    @Column
     Date Attendance_Date;
+    @Column
     Date Attendance_Time;
+    @Column
     int Attendance_Status;
+    @Column
     String Attendance_etc;
 
     public String getAttendance_No() {

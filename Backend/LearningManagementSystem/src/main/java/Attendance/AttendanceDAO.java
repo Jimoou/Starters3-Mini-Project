@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository("attendancedao")
 public interface AttendanceDAO {
-	public List<AttendanceUserDTO> attendancelist();
-
-	public List<AttendanceUserDTO> userAttendance(String id);
+	public List<AttendanceDTO> attendancelist();
+	public List<AttendanceDTO>  userAttendance(String id);
+	public List<AttendanceDTO>  userUnAttendance(String id);
 }

@@ -4,6 +4,5 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="Attendance.AttendanceDTO" alias="attendancedto"/>
-		<typeAlias type="Attendance.AttendanceUserDTO" alias="attendanceuserdto"/>
 	</typeAliases>
 </configuration>
