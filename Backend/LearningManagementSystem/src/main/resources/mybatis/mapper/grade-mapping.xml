@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.LearningManagementSystem.Grade.GradeDAO">
+    <resultMap type="HashMap" id="getGradelistMap">
+        <result property="User_id" column="G.User_id"/>
+        <result property="Grade_at" column="G.Grade_at"/>
+        <result property="Grade_Type" column="Grade_Type"/>
+        <result property="Grade_Score" column="G.Grade_Score"/>
+        <result property="Extra_self" column="Extra_self"/>
+        <result property="Extra_Attend" column="Extra_Attend"/>
+        <result property="Extra_will" column="Extra_will"/>
+        <result property="Extra_Final" column="Extra_Final"/>
+        <result property="user_id" column="E.User_Id"/>
+    </resultMap>
+    <select id="getGradelist" resultMap="getGradelistMap" parameterType="String">
+        select G.User_id,
+               sum(case when day (G.Grade_at) = 10 and Grade_Type = 1 then G.Grade_Score end) as "1stMulti",
+               sum(case when day (G.Grade_at) = 10 and Grade_Type = 2 then G.Grade_Score end) as "1stTask",
+               sum(case when day (G.Grade_at) = 15 and Grade_Type = 1 then G.Grade_Score end) as "2edMulti",
+               sum(case when day (G.Grade_at) = 15 and Grade_Type = 2 then G.Grade_Score end) as "2edTask",
+               sum(case when day (G.Grade_at) = 20 and Grade_Type = 1 then G.Grade_Score end) as "3rdMulti",
+               sum(case when day (G.Grade_at) = 20 and Grade_Type = 2 then G.Grade_Score end) as "3rdTask",
+               sum(case when day (G.Grade_at) = 30 and Grade_Type = 1 then G.Grade_Score end) as "FinalMulti",
+               sum(case when day (G.Grade_at) = 30 and Grade_Type = 2 then G.Grade_Score end) as "FinalTask",
+               round(((Extra_self + Extra_Attend + Extra_will) / 3 * 0.2), 2)                 as "Capabilities",
+               round(((Extra_Blog + Extra_Udemy) / 2 * 0.1), 2)                               as "Submit",
+               round(Extra_Final * 0.4)                                                       as "Final",
+               round(
+                           ((sum(case when day (G.Grade_at) = 30 and Grade_Type = 1 then G.Grade_Score end)
+                               + sum(case when day (G.Grade_at) = 30 and Grade_Type = 2 then G.Grade_Score end)) * 0.3)
+                           + round(((Extra_self + Extra_Attend + Extra_will) / 3 * 0.2), 2) +
+                           round(((Extra_Blog + Extra_Udemy) / 2 * 0.1), 2)
+                           + round(Extra_Final * 0.4)
+                   )                                                                          as "Total",
+               RANK()                                                                            OVER(ORDER BY Total DESC) "Rank"
+        from grade G
+                 left join extra E on E.User_Id = G.User_Id
+        group by G.User_Id;
+    </select>
+    <select id="getUserGrade" resultType="gradedto">
+        select *
+        from grade
+        where user_id = #{user_id}
+    </select>
+    <insert id="InsertUserGrade" parameterType="gradedto">
+        insert into grade(user_id, grade_type, grade_score, grade_at, grade_date)
+        values (#{user_id}, #{grade_type}, #{grade_score}, NOW(), NOW())
+    </insert>
+    <update id="UpdateUserGrade" parameterType="gradedto">
+        update grade
+        set grade_type  = #{grade_type}
+          , grade_score = #{grade_score}
+          , grade_at    = NOW()
+          , grade_date  = NOW()
+        where user_id = #{user_id}
+    </update>
+
+</mapper>

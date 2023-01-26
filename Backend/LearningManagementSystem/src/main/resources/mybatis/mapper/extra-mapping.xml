@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.LearningManagementSystem.Grade.Extra.ExtraDAO">
+    <select id="getUserExtra" resultType="extradto">
+        select *
+        from extra
+        where user_id = #{user_id}
+    </select>
+
+    <insert id="InsertUserExtra" parameterType="extradto">
+        insert into extra(extra_self, extra_will, extra_attend, extra_blog, extra_udemy, extra_task, extra_final,
+                          extra_at, extra_etc)
+        values (#{extra_self}, #{extra_will}, #{extra_attend}, #{extra_blog}, #{extra_udemy}, #{extra_task},
+                #{extra_final}, NOW(), "성실한학생")
+    </insert>
+
+    <update id="UpdateUserExtra" parameterType="extradto">
+        update extra
+        set extra_self   = #{extra_self}
+          , extra_will   = #{extra_will}
+          , extra_attend = #{extra_attend}
+          , extra_blog   = #{extra_blog}
+          , extra_udemy  = #{extra_udemy}
+          , extra_task   = #{extra_task}
+          , extra_final  = #{extra_final}
+          , extra_at     = now()
+          , extra_etc    = #{extra_etc}
+        where user_id = #{user_id}
+    </update>
+
+</mapper>
