@@ -6,6 +6,7 @@ export const Comment: React.FC<{ comment: CommentModel }> = (props) => {
     props.comment.viewSelf.split("/")[5]
   );
 
+
   const deleteData = async (id: number) => {
     await axios.delete(`http://localhost:8080/api/comments/${id}`, {
     }).then(response => {
