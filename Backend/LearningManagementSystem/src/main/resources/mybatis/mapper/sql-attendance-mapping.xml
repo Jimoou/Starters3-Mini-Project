@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.LearningManagementSystem.Attendance.AttendanceDAO">
 
-  <select id="userAttendance" parameterType="String" resultType="attendanceuserdto">
-    SELECT User_Name,
-           Attendance_Date,
-           date_format(Attendance_Time, '%T') as Attendance_Time,
-           Attendance_Status
-    FROM Attendance AS A
-           LEFT JOIN document AS D ON A.Attendance_No = D.Attendance_No
-           LEFT JOIN user AS U ON A.User_Id = U.User_Id
-    WHERE A.User_id = #{id}
-    /*AND Attendance_Status !=1;*/
-  </select>
+    <select id="userAttendance" parameterType="String" resultType="attendanceuserdto">
+        SELECT user_name,
+               Attendance_Date,
+               date_format(Attendance_Time, '%T') as Attendance_Time,
+               Attendance_Status
+        FROM Attendance AS A
+                 LEFT JOIN document AS D ON A.Attendance_No = D.Attendance_No
+                 LEFT JOIN user AS U ON A.user_id = U.user_id
+        WHERE A.user_id = #{id}
+        /*AND Attendance_Status !=1;*/
+    </select>
 
-  <select id="attendancelist" parameterType="String" resultType="attendanceuserdto">
-    SELECT U.User_Name                           User_Name,
-           Attendance_Date,
-           date_format(Attendance_Time, '%T') as Attendance_Time,
-           Attendance_Status,
-           Attendance_etc
-    from Attendance AS A
-           JOIN User AS U ON A.User_Id = U.User_Id
-    ORDER BY U.User_Name, Attendance_Date ASC;
-  </select>
+    <select id="attendancelist" parameterType="String" resultType="attendanceuserdto">
+        SELECT U.user_name  as user_name,
+               Attendance_Date,
+               date_format(Attendance_Time, '%T') as Attendance_Time,
+               Attendance_Status,
+               Attendance_etc
+        from Attendance AS A
+                 JOIN user AS U ON A.user_id = U.user_id
+        ORDER BY U.user_name, Attendance_Date ASC;
+    </select>
 </mapper>
