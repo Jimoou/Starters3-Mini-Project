@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin
+@RequestMapping("/api")
 public class AttendanceController {
     @Autowired
     @Qualifier("attendanceservice")
@@ -37,7 +37,7 @@ public class AttendanceController {
         }
         for(String onename :nameSet) {
             Map<String, Object> attendanceAllMap = new HashMap<>();
-            attendanceAllMap.put("User_name", onename);
+            attendanceAllMap.put("user_name", onename);
 
             Map<String, String> attendance = new HashMap();
             for (AttendanceUserDTO one : attendanceList) {
@@ -55,7 +55,7 @@ public class AttendanceController {
     }
 
     //유저 하나 출결 정보
-    @GetMapping("/attendace/{id}/2")
+    @GetMapping("/attendace/{id}")
     public Object GetUserunAttendnace(@PathVariable String id) {
         List<AttendanceUserDTO> unattendance = service.userAttendance(id);
         HashMap<Object,Object> oneUser = new HashMap<Object, Object>();
@@ -68,7 +68,7 @@ public class AttendanceController {
             attendance.put(date,AttendanceStatus);
         }
 
-        oneUser.put("user_Name",unattendance.get(0).getUser_Name());
+        oneUser.put("user_name",unattendance.get(0).getUser_Name());
         oneUser.put("attendance",attendance);
         return oneUser;
     }
