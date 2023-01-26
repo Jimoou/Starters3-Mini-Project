@@ -1,4 +1,4 @@
-package com.example.LearningManagementSystem.Entity;
+package com.example.LearningManagementSystem.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

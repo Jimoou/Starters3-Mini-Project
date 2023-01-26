@@ -1,18 +1,20 @@
-package com.example.LearningManagementSystem.extra;
+package com.example.LearningManagementSystem.Grade.Extra;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service("extraservice")
 public class ExtraServiceImpl implements ExtraService{
 	@Autowired
+	@Qualifier("extradao")
 	ExtraDAO dao;
 	 
 	@Override
-	public int InsertUserExtra(ExtraDTO dto) {
-		return dao.InsertUserExtra(dto);
+	public void InsertUserExtra(ExtraDTO dto) {
+		dao.InsertUserExtra(dto);
 	}
 
 	@Override
@@ -21,7 +23,7 @@ public class ExtraServiceImpl implements ExtraService{
 	}
 
 	@Override
-	public int UpdateUserExtra(ExtraDTO dto) {
-		return dao.UpdateUserExtra(dto);
+	public void UpdateUserExtra(ExtraDTO dto) {
+		dao.UpdateUserExtra(dto);
 	}
 }

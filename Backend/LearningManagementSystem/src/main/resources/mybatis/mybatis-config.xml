@@ -5,5 +5,7 @@
   <typeAliases>
     <typeAlias type="com.example.LearningManagementSystem.Attendance.AttendanceDTO" alias="attendancedto"/>
     <typeAlias type="com.example.LearningManagementSystem.Attendance.AttendanceUserDTO" alias="attendanceuserdto"/>
+    <typeAlias type="com.example.LearningManagementSystem.Grade.GradeDTO" alias="gradedto"/>
+    <typeAlias type="com.example.LearningManagementSystem.Grade.Extra.ExtraDTO" alias="extradto"/>
   </typeAliases>
 </configuration>

@@ -1,15 +1,13 @@
-package com.example.LearningManagementSystem.extra;
-
-import org.springframework.stereotype.Component;
+package com.example.LearningManagementSystem.Grade.Extra;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
 @Component("extradto")
 public class ExtraDTO {
-	
 	String user_id;		//구성원
 	String extra_self;	//인재-자기주도성
 	String extra_will;	//인재-배움의지
@@ -20,6 +18,4 @@ public class ExtraDTO {
 	String extra_final;	//최종프로젝트 평가
 	String extra_at;	//평가일
 	String extra_etc;	//비고
-	
-	
 }
