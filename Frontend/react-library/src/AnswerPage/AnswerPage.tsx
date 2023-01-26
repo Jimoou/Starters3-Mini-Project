@@ -90,7 +90,7 @@ export default function AnswerPage() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              <Link to={`/boards/${Number(article.viewSelf.charAt(article.viewSelf.length-1))}`}>{article.title}</Link>
+              <Link className={styles.link} to={`/boards/${Number(article.viewSelf.charAt(article.viewSelf.length-1))}`}>{article.title}</Link>
               </TableCell>
               <TableCell align="center">
                 {article.userName}

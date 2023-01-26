@@ -5,14 +5,40 @@ import styles from "../../Stylesheet/Answer.module.css";
 import CommentModel from "../../Models/CommentModel";
 import { Link } from "react-router-dom";
 import React from "react";
+import { Comment } from "../Components/Comment";
+import axios from "axios";
+import { NorthWest } from "@mui/icons-material";
 
 export const Answer = () => {
+  const now = new Date();
+
   const [article, setArticle] = useState<ArticleModel>();
   const [comments, setComments] = useState<CommentModel[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
 
-  const articleId = window.location.pathname.split("/")[2];
+  const articleId = Number(window.location.pathname.split("/")[2]);
+
+  const [content, setContent] = useState("");
+
+  const submitData = async (e: any) => {
+    e.preventDefault();
+    await axios
+      .post(`http://localhost:8080/api/board/${articleId}/comments`, {
+        userName: "관리자",
+        content: content,
+        boardId: articleId,
+      })
+      .then((response) => {
+        if (response.data != null) {
+          alert("입력되었습니다.");
+        }
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -63,6 +89,7 @@ export const Answer = () => {
           content: responseData[key].content,
           createAt: responseData[key].createAt,
           modifiedAt: responseData[key].modifiedAt,
+          viewSelf: responseData[key]._links.self.href,
         });
       }
       setComments(loadedComments);
@@ -87,7 +114,11 @@ export const Answer = () => {
   }
   return (
     <div className={styles.answer}>
-        <button className={styles.button}><Link className={styles.button} to='/answer'>목록으로</Link></button>
+      <button className={styles.button}>
+        <Link className={styles.button} to="/answer">
+          목록으로
+        </Link>
+      </button>
       <div className={styles.container}>
         <div className={styles.title}>{article?.title}</div>
         <div className={styles.profile}>
@@ -99,9 +130,14 @@ export const Answer = () => {
         <div className={styles.content}>{article?.content}</div>
       </div>
       <div className={styles.form}>
-        <form>
-          <textarea placeholder="댓글을 입력하세요."></textarea>
-          <button className={styles.button} type="submit">입력</button>
+        <form onSubmit={submitData}>
+          <textarea
+            placeholder="댓글을 입력하세요."
+            onChange={(e) => setContent(e.target.value)}
+          ></textarea>
+          <button className={styles.button} type="submit">
+            입력
+          </button>
         </form>
       </div>
       <div className={styles.container}>
@@ -114,7 +150,12 @@ export const Answer = () => {
                 {comment.createAt.split("T")[0]}
               </div>
             </div>
-            <div className={styles.content}>{comment.content}</div>
+            <div className={styles.content}>
+              <Comment
+                comment={comment}
+                key={Number(comment.viewSelf.split("/")[5])}
+              />
+            </div>
             <hr />
           </>
         ))}

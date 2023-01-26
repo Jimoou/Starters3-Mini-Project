@@ -1,5 +1,6 @@
 package com.example.LearningManagementSystem.Entity.Board;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 

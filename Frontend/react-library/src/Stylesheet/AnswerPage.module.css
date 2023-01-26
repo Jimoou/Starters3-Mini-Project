@@ -16,3 +16,7 @@
 .tablehead {
     background-color: gainsboro;
 }
+.link {
+    text-decoration: none;
+    color: black;
+}
