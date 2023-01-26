@@ -1,4 +1,4 @@
-package com.example.LearningManagementSystem.extra;
+package com.example.LearningManagementSystem.Grade.Extra;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

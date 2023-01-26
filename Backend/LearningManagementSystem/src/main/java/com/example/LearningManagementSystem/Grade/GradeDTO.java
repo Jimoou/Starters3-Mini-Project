@@ -1,4 +1,4 @@
-package  com.example.LearningManagementSystem.grade;
+package com.example.LearningManagementSystem.Grade;
 
 import org.springframework.stereotype.Component;
 

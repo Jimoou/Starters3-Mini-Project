@@ -1,4 +1,4 @@
-package  com.example.LearningManagementSystem.grade;
+package com.example.LearningManagementSystem.Grade;
 
 import java.util.List;
 import java.util.Map;
