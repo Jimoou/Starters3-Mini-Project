@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AttendanceDTO {
-
     String Attendance_No;
     String User_id;
     Date Attendance_Date;
