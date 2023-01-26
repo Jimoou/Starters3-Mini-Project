@@ -1,0 +1,18 @@
+.main {
+    width: 95%;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.tablecontainer {
+    width: 100%;
+}
+
+.header {
+    margin: 20px;
+    width: 250px;
+}
+.tablehead {
+    background-color: gainsboro;
+}

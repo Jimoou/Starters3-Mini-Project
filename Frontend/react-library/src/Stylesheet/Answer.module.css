@@ -1,0 +1,50 @@
+.container {
+    width: 90%;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+textarea {
+    width: 100%;
+    height: 200px;
+    resize: none;
+}
+.form {
+    width: 90%;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    text-align: right;
+}
+.title {
+    padding: 10px;
+    background-color: gainsboro;
+    font-weight: bold;
+}
+.profile {
+    width:100px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.commentTitle {
+    padding: 10px;
+    background-color: gainsboro;
+}
+.userName {
+    font-weight: bold;
+}
+
+.createAt{
+    font-size: 13px;
+}
+.content {
+    margin: 10px;
+    padding-bottom: 5px;
+}
+
+.button {
+    text-decoration: none;
+    color: black;
+    margin: 10px;
+}
