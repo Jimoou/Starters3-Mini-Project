@@ -4,6 +4,7 @@ import { SpinnerLoading } from "../../Util/SpinnerLoading";
 import styles from "../../Stylesheet/Answer.module.css";
 import CommentModel from "../../Models/CommentModel";
 import { Link } from "react-router-dom";
+import React from "react";
 
 export const Answer = () => {
   const [article, setArticle] = useState<ArticleModel>();

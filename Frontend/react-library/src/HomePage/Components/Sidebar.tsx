@@ -26,10 +26,10 @@ export const Sidebar = () => {
           <RuleIcon className={styles.Icon} />
           <div className={styles.menudata}>출결 관리</div>
         </div>
-        <div className={styles.container2}>
+        <Link to='/users' className={styles.container2}>
           <PeopleIcon className={styles.Icon} />
           <div className={styles.menudata}>구성원 관리</div>
-        </div>
+        </Link>
       </div>
     </div>
   );
