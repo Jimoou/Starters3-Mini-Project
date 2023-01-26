@@ -2,8 +2,10 @@ import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { HomePage } from "./HomePage/HomePage";
-import { Sidebar } from "./HomePage/Sidebar/Sidebar";
+import { Sidebar } from "./HomePage/Components/Sidebar";
 import Navbar from "./NavbarAndFooter/Navbar";
+import AnswerPage from "./AnswerPage/AnswerPage";
+import { Answer } from "./AnswerPage/Components/Answer";
 
 function App() {
   return (
@@ -14,12 +16,14 @@ function App() {
           <Sidebar />
         </div>
         <div className="view">
-          <HomePage />
+          <Routes>
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/answer" element={<AnswerPage />} />
+            <Route path="/boards/:articleId" element={<Answer />} />
+          </Routes>
         </div>
       </div>
-      {/* <Routes>
-        <Route path="/home" element={<HomePage />} />
-      </Routes> */}
+      
     </div>
   );
 }
