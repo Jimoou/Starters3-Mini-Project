@@ -1,0 +1,14 @@
+package com.example.LearningManagementSystem.User;
+
+import org.springframework.stereotype.Service;
+
+@Service("userservice")
+public class UserServiceImpl implements UserService {
+
+	@Override
+	public UserDTO oneUser(String user_Id) {
+		return dao.;
+	}
+	
+
+}

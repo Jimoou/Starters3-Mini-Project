@@ -1,0 +1,9 @@
+package com.example.LearningManagementSystem.User;
+
+import java.util.List;
+
+public interface UserService {
+	
+	public List<Object> oneUser(String user_Id);
+	
+}

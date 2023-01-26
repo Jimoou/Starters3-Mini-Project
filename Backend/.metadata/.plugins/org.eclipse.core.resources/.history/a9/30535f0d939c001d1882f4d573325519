@@ -1,0 +1,15 @@
+package com.example.LearningManagementSystem;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+@ComponentScan(basePackages = {"mybatis","board.spring.mybatis"})
+@MapperScan(basePackages = {"mybatis","board.spring.mybatis"})
+public class LearningManagementSystemApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LearningManagementSystemApplication.class, args);
+	}
+
+}
