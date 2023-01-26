@@ -8,6 +8,7 @@ import AnswerPage from "./AnswerPage/AnswerPage";
 import { Answer } from "./AnswerPage/Components/Answer";
 import UserPage from "./UserPage/UserPage";
 import { DetailUser } from "./UserPage/Components/DetailUser";
+import { AttendancePage } from "./AttendancePage/AttendancePage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/boards/:articleId" element={<Answer />} />
             <Route path="/users" element={<UserPage />} />
             <Route path="/users/:userId" element={<DetailUser />} />
+            <Route path="/attendance" element={<AttendancePage />} />
           </Routes>
         </div>
       </div>
