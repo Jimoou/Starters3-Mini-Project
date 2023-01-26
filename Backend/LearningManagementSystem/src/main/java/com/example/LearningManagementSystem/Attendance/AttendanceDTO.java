@@ -1,4 +1,4 @@
-package Attendance;
+package com.example.LearningManagementSystem.Attendance;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

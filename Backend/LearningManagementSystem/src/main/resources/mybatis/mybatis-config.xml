@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
   <typeAliases>
-    <typeAlias type="Attendance.AttendanceDTO" alias="attendancedto"/>
-    <typeAlias type="Attendance.AttendanceUserDTO" alias="attendanceuserdto"/>
+    <typeAlias type="com.example.LearningManagementSystem.Attendance.AttendanceDTO" alias="attendancedto"/>
+    <typeAlias type="com.example.LearningManagementSystem.Attendance.AttendanceUserDTO" alias="attendanceuserdto"/>
   </typeAliases>
 </configuration>

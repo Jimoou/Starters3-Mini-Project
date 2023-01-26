@@ -1,4 +1,4 @@
-package Attendance;
+package com.example.LearningManagementSystem.Attendance;
 
 import org.springframework.stereotype.Component;
 

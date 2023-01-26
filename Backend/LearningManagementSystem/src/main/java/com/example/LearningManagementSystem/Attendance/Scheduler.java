@@ -1,4 +1,4 @@
-package Attendance;
+package com.example.LearningManagementSystem.Attendance;
 
 import lombok.extern.flogger.Flogger;
 import org.springframework.scheduling.annotation.Scheduled;
