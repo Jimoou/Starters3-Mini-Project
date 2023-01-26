@@ -1,4 +1,4 @@
-package com.example.LearningManagementSystem.Entity;
+package com.example.LearningManagementSystem.User;
 
 import jakarta.persistence.*;
 import lombok.*;
