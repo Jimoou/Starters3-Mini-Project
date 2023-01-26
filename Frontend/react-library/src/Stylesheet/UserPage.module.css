@@ -3,16 +3,21 @@
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
+    
 }
 
 .tablecontainer {
     width: 100%;
+    
 }
-
 .header {
     margin: 20px;
     width: 250px;
 }
 .tablehead {
     background-color: gainsboro;
+}
+.link {
+    text-decoration: none;
+    color: black;
 }
