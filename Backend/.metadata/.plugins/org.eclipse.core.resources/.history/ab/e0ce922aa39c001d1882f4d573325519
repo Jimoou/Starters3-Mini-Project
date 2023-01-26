@@ -1,0 +1,7 @@
+package com.example.LearningManagementSystem.User;
+
+public interface UserService {
+	
+	public UserDTO oneUser(String user_Id);
+	
+}

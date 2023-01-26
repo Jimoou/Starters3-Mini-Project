@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="mybatis.MemberDAO"> <!-- 매핑할 DAO의 위치를 지정 -->
+ 	<select id="memberlist" resultType="memberdto">
+ 		select * from member
+ 	</select>
+ 	<select id="membercount" resultType="int">
+ 		select count(*) from member
+ 	</select>
+ 	<select id="onemember" resultType="memberdto" parameterType="String">
+ 		select * from member where id = #{id}
+ 	</select>
+ 	<select id="pageinglist" resultType="memberdto" >
+ 		<!-- 인덱스, 보일 객체 수 파라미터 값은 하나만 입력가능-->
+ 		select * from member order by indate desc limit 
+ 		<foreach collection="array" item="num" separator=",">
+ 		#{num}
+ 		</foreach>
+ 	</select>
+ 	
+ 	<insert id="insertmember" parameterType="memberdto">
+ 	insert into member values
+ 	(#{id}, #{pw},#{name},#{phone},#{email},#{address}, now(),#{image})
+ 	</insert>
+ 	
+ 	<update id="updatemember" parameterType="memberdto">
+ 	update member set name=#{name}, phone = #{phone}, email = #{email} where id=#{id}
+ 	</update>
+ 	
+ 	<delete id="deletemember" parameterType="String">
+ 	delete from member where id=#{id}
+ 	</delete>
+ 	
+ 	<!-- map자료형으로 조회 -->
+ 	<select id="searchmember" resultType="memberdto" parameterType="HashMap">
+ 		select * from member where ${colname} like #{colvalue}
+ 	</select>
+ 	
+ 	<!-- Arraylist자료형으로 조회 -->
+ 	<select id="addresssearch" resultType="memberdto" > <!-- Type생략 가능  -->
+ 		select * from member where address in 
+ 		<foreach open="(" collection="list" close=")" separator="," item="addr">
+ 		#{addr}
+ 		</foreach>
+ 	</select>
+ 	
+ 	<!-- sql 조각 사용, 동적 sql-->
+	<sql id="a">
+		select * from member
+	</sql> 	
+	<select id="combination" resultType="memberdto" parameterType="memberdto">
+		<include refid="a" />
+		<where>
+			<choose>
+			<when test="name != null and name !='' and email != null and email !='' ">
+				name=#{name} and email = #{email}
+			</when>		
+			<when test="name != null and name !='' ">
+				name=#{name}
+			</when>		
+			<when test="email != null and email !='' ">
+				email = #{email}
+			</when>						
+			</choose>
+		</where>
+	</select>
+	
+	<!-- Join문 -->
+	<resultMap type="HashMap" id="memberboardmap">
+		<result property="id" column="id"/><!-- db의 컴럼과 dto의 변수명이 다를때 매핑  -->
+		<result property="name" column="name"/>
+		<result property="title" column="title"/>
+		<result property="time" column="writingtime"/>
+	</resultMap>
+	<select id="memberboard" resultMap="memberboardmap" parameterType="String">
+		select id, name, ifnull(title,'글없음')title, ifnull(writingtime,'시간모름') writingtime
+		from member m left outer join board b on m.id = b.writer
+		where id = #{id};
+	</select>
+	
+ 	
+ </mapper>

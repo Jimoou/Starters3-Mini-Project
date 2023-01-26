@@ -1,0 +1,173 @@
+-- 구성원
+CREATE TABLE `User` (
+	`User_Id`      varchar(50) NOT NULL COMMENT 'ID', -- ID
+	`User_Pw`      varchar(20) NOT NULL COMMENT '비밀번호', -- 비밀번호
+	`User_Name`    varchar(30) NOT NULL COMMENT '이름', -- 이름
+	`User_Addr`    varchar(50) NOT NULL COMMENT '주소', -- 주소
+	`User_Phone`   varchar(15) NOT NULL COMMENT '전화번호', -- 전화번호
+	`User_Brith`   DATETIME    NOT NULL COMMENT '생년월일', -- 생년월일
+	`User_Email`   varchar(30) NOT NULL COMMENT '이메일', -- 이메일
+	`User_admin`   int(1)      NOT NULL COMMENT '관리자여부', -- 관리자여부
+	`User_RegDate` DATETIME    NOT NULL COMMENT '등록일', -- 등록일
+	`User_Status`  int(1)      NOT NULL COMMENT '학생상태' -- 학생상태
+)
+COMMENT '구성원';
+
+-- 구성원
+ALTER TABLE `User`
+	ADD CONSTRAINT `PK_User` -- 구성원 기본키
+		PRIMARY KEY (
+			`User_Id` -- ID
+		);
+
+-- Q&A
+CREATE TABLE `Board` (
+	`Board_No`      int(5)       NOT NULL COMMENT 'Q&A번호', -- Q&A번호
+	`Board_title`   varchar(100) NULL     COMMENT '제목', -- 제목
+	`User_Id`       varchar(50)  NULL     COMMENT '작성자', -- 작성자
+	`Board_content` text         NULL     COMMENT '질문내용', -- 질문내용
+	`Board_at`      DateTime     NULL     COMMENT '작성시간', -- 작성시간
+	`Board_Up`      DateTime     NULL     COMMENT '최종수정시간' -- 최종수정시간
+)
+COMMENT 'Q&A';
+
+-- Q&A
+ALTER TABLE `Board`
+	ADD CONSTRAINT `PK_Board` -- Q&A 기본키
+		PRIMARY KEY (
+			`Board_No` -- Q&A번호
+		);
+
+ALTER TABLE `Board`
+	MODIFY COLUMN `Board_No` int(5) NOT NULL AUTO_INCREMENT COMMENT 'Q&A번호';
+
+ALTER TABLE `Board`
+	AUTO_INCREMENT = 1;
+
+-- 댓글
+CREATE TABLE `Comment` (
+	`Comment_Id`     int(5)      NOT NULL COMMENT '댓글번호', -- 댓글번호
+	`User_Id`        varchar(50) NULL     COMMENT '작성자', -- 작성자
+	`Board_No`       int(5)      NULL     COMMENT '해당 게시물', -- 해당 게시물
+	`Comment_Answer` text        NULL     COMMENT '댓글내용', -- 댓글내용
+	`Comment_at`     DateTime    NULL     COMMENT '작성시간', -- 작성시간
+	`Comment_Up`     DateTime    NULL     COMMENT '최종수정시간' -- 최종수정시간
+)
+COMMENT '댓글';
+
+-- 댓글
+ALTER TABLE `Comment`
+	ADD CONSTRAINT `PK_Comment` -- 댓글 기본키
+		PRIMARY KEY (
+			`Comment_Id` -- 댓글번호
+		);
+
+ALTER TABLE `Comment`
+	MODIFY COLUMN `Comment_Id` int(5) NOT NULL AUTO_INCREMENT COMMENT '댓글번호';
+
+ALTER TABLE `Comment`
+	AUTO_INCREMENT = 1;
+
+-- 출석
+CREATE TABLE `Attendance` (
+	`Attendance_No`     Varchar(50)  NOT NULL COMMENT '출석번호', -- 출석번호
+	`User_Id`           varchar(50)  NULL     COMMENT '출석자', -- 출석자
+	`Attendance_Date`   DATE         NULL     COMMENT '출석날짜', -- 출석날짜
+	`Attendance_Time`   DATETIME     NULL     COMMENT '출석시간', -- 출석시간
+	`Attendance_Status` int(1)       NULL     COMMENT '출결상태', -- 출결상태
+	`Attendance_etc`    varchar(200) NULL     COMMENT '비고' -- 비고
+)
+COMMENT '출석';
+
+-- 출석
+ALTER TABLE `Attendance`
+	ADD CONSTRAINT `PK_Attendance` -- 출석 기본키
+		PRIMARY KEY (
+			`Attendance_No` -- 출석번호
+		);
+
+-- 증빙서류
+CREATE TABLE `Document` (
+	`Document_Id`    int(4)      NOT NULL COMMENT '증빙서류번호', -- 증빙서류번호
+	`Attendance_No`  Varchar(50) NULL     COMMENT '증빙대상', -- 증빙대상
+	`User_Id`        varchar(50) NULL     COMMENT '등록자', -- 등록자
+	`Document_File`  text        NULL     COMMENT '증빙서류', -- 증빙서류
+	`Document_at`    DATETIME    NULL     COMMENT '제출시간', -- 제출시간
+	`Document_Up`    DATETIME    NULL     COMMENT '최종수정시간', -- 최종수정시간
+	`Document_check` int(1)      NULL     COMMENT '확인여부' -- 확인여부
+)
+COMMENT '증빙서류';
+
+-- 증빙서류
+ALTER TABLE `Document`
+	ADD CONSTRAINT `PK_Document` -- 증빙서류 기본키
+		PRIMARY KEY (
+			`Document_Id` -- 증빙서류번호
+		);
+
+ALTER TABLE `Document`
+	MODIFY COLUMN `Document_Id` int(4) NOT NULL AUTO_INCREMENT COMMENT '증빙서류번호';
+
+ALTER TABLE `Document`
+	AUTO_INCREMENT = 1;
+
+-- 휴일
+CREATE TABLE `DayOff` (
+	`DayOff_Year`  YEAR         NULL COMMENT '년도', -- 년도
+	`DayOff_Month` DATE         NULL COMMENT '날짜', -- 날짜
+	`DayOff_etc`   varchar(200) NULL COMMENT '비고' -- 비고
+)
+COMMENT '휴일';
+
+-- 주관식파일
+CREATE TABLE `Report` (
+	`Grade_Id`    int(4)      NULL COMMENT '성적 번호', -- 성적 번호
+	`User_Id`     varchar(50) NULL COMMENT '등록자', -- 등록자
+	`Report_name` varchar(50) NULL COMMENT '파일명', -- 파일명
+	`Report_Path` text        NULL COMMENT '파일경로', -- 파일경로
+	`Report_at`   DATETIME    NULL COMMENT '재출시간' -- 재출시간
+)
+COMMENT '주관식파일';
+
+-- 성적
+CREATE TABLE `Grade` (
+	`Grade_Id`    int(4)      NOT NULL COMMENT '성적 번호', -- 성적 번호
+	`User_Id`     varchar(50) NULL     COMMENT '해당학생', -- 해당학생
+	`Grade_Type`  int(1)      NULL     COMMENT '시험타입', -- 시험타입
+	`Grade_Score` int(2)      NULL     COMMENT '점수', -- 점수
+	`Grade_at`    DATETIME    NULL     COMMENT '시험날짜', -- 시험날짜
+	`Grade_Date`  DATETIME    NULL     COMMENT '평가날짜' -- 평가날짜
+)
+COMMENT '성적';
+
+-- 성적
+ALTER TABLE `Grade`
+	ADD CONSTRAINT `PK_Grade` -- 성적 기본키
+		PRIMARY KEY (
+			`Grade_Id` -- 성적 번호
+		);
+
+ALTER TABLE `Grade`
+	MODIFY COLUMN `Grade_Id` int(4) NOT NULL AUTO_INCREMENT COMMENT '성적 번호';
+
+ALTER TABLE `Grade`
+	AUTO_INCREMENT = 1;
+
+-- 기타평가
+CREATE TABLE `Extra` (
+	`User_Id`      varchar(50)  NULL COMMENT '대상학생', -- 대상학생
+	`Extra_self`   varchar(5)   NULL COMMENT '인재-자기주도성', -- 인재-자기주도성
+	`Extra_will`   varchar(5)   NULL COMMENT '인재-배움의지', -- 인재-배움의지
+	`Extra_Attend` varchar(5)   NULL COMMENT '인재-수업참여도', -- 인재-수업참여도
+	`Extra_Blog`   varchar(5)   NULL COMMENT '블로그점수', -- 블로그점수
+	`Extra_Udemy`  varchar(5)   NULL COMMENT '유데미강의점수', -- 유데미강의점수
+	`Extra_Task`   varchar(5)   NULL COMMENT '과제점수', -- 과제점수
+	`Extra_Final`  varchar(5)   NULL COMMENT '최종프로젝트 평가', -- 최종프로젝트 평가
+	`Extra_at`     DATETIME     NULL COMMENT '평가일', -- 평가일
+	`Extra_etc`    varchar(200) NULL COMMENT '비고' -- 비고
+)
+COMMENT '기타평가';
+
+
+
+alter table attendance modify Attendance_No varchar(50) not null DEFAULT REPLACE(UUID(),'-','');

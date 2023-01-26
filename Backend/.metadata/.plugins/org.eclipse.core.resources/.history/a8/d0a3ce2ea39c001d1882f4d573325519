@@ -1,0 +1,11 @@
+package com.example.LearningManagementSystem.User;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+@Mapper
+@Repository("userdao")
+public interface UserDAO {
+	public UserDTO oneUser(String user_Id);
+	
+}

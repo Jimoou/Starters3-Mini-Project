@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+  <connection>
+    <productId>com.tomato.db.mysql</productId>
+    <productName>MySQL 5.1 ~ 5.8</productName>
+    <name>LMS</name>
+    <driverJar>C:\Users\user\Downloads\mariadb-java-client-2.7.3.jar</driverJar>
+    <driverClass>org.mariadb.jdbc.Driver</driverClass>
+    <url>jdbc:mysql://localhost:3306/LMS?characterEncoding=utf8</url>
+    <properties>
+      <password>1234</password>
+      <databaseName>LMS</databaseName>
+      <port>3306</port>
+      <host>localhost</host>
+      <characterEncoding>utf8</characterEncoding>
+      <user>Starters</user>
+    </properties>
+    <extendedProperties />
+  </connection>
+</database>
+

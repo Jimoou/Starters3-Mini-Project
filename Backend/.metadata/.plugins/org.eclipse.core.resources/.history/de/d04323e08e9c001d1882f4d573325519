@@ -1,0 +1,10 @@
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+spring.datasource.url=jdbc:mariadb://localhost:3306/LMS
+spring.datasource.username=Starters
+spring.datasource.password=1234
+
+# Mybatis 설정 연결
+mybatis.config-location=classpath:mybatis/mybatis-config.xml
+
+# sql 매핑 board-mapping.xml member-mapping.xml
+mybatis.mapper-locations=classpath:mybatis/mapper/*-mapping.xml
