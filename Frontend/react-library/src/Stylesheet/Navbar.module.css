@@ -1,14 +1,37 @@
 .navbar {
     width: 99%;
-    height: 50px;
+    height: 70px;
     margin: auto;
+    display: flex;
+    flex-direction: row;
     margin-top: 5px;
+    border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    background-color: #D3B7D8;
+    font-family: 'GangwonEdu_OTFBoldA';
 }
-
+.left {
+    display: flex;
+    flex-direction: row;
+}
+.button {
+    padding-top: 15px;
+    padding-right: 15px;
+}
 .title {
     list-style: none;
-    padding-top: 15px;
+    padding-top: 17px;
+    margin-left: 50px;
+    font-size: 25px;
     font-weight: bold;
+}
+.icon {
+    font-size: large;
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    text-align: center;
+    margin-top: 20px;
+    padding-right: 20px;
 }
 
