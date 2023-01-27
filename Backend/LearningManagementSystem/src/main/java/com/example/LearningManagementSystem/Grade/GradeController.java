@@ -30,8 +30,7 @@ public class GradeController {
 //	전체구성원성적 목록
 	@GetMapping("/grade")
 	public List<Object> getGradelist() {
-		List<Object> list = gradeservice.getGradelist();
-		return list;
+		return gradeservice.getGradelist();
 	}
 	
 //	개인별성적 상세
