@@ -29,8 +29,9 @@ public class CommentController {
 
     //댓글 수정
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/comments/{id}")
-    public void updateComment(@RequestBody CommentDto commentDto, @PathVariable("id") Long id){
+    @PutMapping("/comment/update/{id}")
+    public void updateComment(@PathVariable Long id, @RequestBody CommentDto commentDto){
         commentService.updateComment(id,commentDto);
+        System.out.println(id);
     }
 }

@@ -1,12 +1,6 @@
 .App {
   text-align: center;
-}
-
-@font-face {
-  font-family: 'GmarketSansMedium';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  font-family: "GangwonEdu_OTFBoldA"
 }
 .main {
   display: flex;
@@ -14,11 +8,16 @@
   margin: auto;
 }
 .menu {
+  font-family: "GangwonEdu_OTFBoldA";
   width: 15%;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.1);
 }
 .view {
+  font-family: "GangwonEdu_OTFBoldA";
   width: 85%;
   margin: 5px;
+  border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.1);
 }
 

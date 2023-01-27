@@ -1,0 +1,23 @@
+.form {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    text-align: left;
+}
+.textarea{
+    width: 100%;
+    resize: none;
+}
+.button {
+    width: 30px;
+    height: 20px;
+    font-size: 15px;
+    color: gray;
+    border-bottom: 1px gray;
+}
+.button:hover {
+    color: red;
+}
+.content {
+    margin-top: 20px;
+}

@@ -131,7 +131,7 @@ export const Answer = () => {
       </div>
       <div className={styles.form}>
         <form onSubmit={submitData}>
-          <textarea
+          <textarea className={styles.textarea}
             placeholder="댓글을 입력하세요."
             onChange={(e) => setContent(e.target.value)}
           ></textarea>

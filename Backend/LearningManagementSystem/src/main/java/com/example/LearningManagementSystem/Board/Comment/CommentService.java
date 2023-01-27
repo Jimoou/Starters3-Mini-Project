@@ -48,6 +48,7 @@ public class CommentService {
         });
 
         comment.setContent(commentDto.getContent());
+
         return CommentDto.toDto(comment);
     }
 }
