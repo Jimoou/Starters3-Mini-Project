@@ -14,7 +14,7 @@ export const Sidebar = () => {
           <HomeIcon className={styles.Icon} />
           <div className={styles.menudata}>홈</div>
         </Link>
-        <Link to="/home" className={styles.container2}>
+        <Link to="/grade" className={styles.container2}>
           <GradingIcon className={styles.Icon} />
           <div className={styles.menudata}>성적 관리</div>
         </Link>

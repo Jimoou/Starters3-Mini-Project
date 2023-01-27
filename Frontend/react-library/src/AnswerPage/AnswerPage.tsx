@@ -96,7 +96,7 @@ export default function AnswerPage() {
                 {article.userName}
                 </TableCell>
               <TableCell align="center">{article.createAt.split("T")[0]}</TableCell>
-              {article.modifiedAt.split("T")[0] != article.createAt.split("T")[0] ?
+              {article.modifiedAt.split("T")[0] !== article.createAt.split("T")[0] ?
               <TableCell align="center">{article.modifiedAt.split("T")[0]}</TableCell>
               :
               <TableCell align="center">-</TableCell>
