@@ -48,6 +48,7 @@ public class CommentService {
         });
 
         comment.setContent(commentDto.getContent());
+        comment.setModifiedAt(commentDto.getModifiedAt());
 
         return CommentDto.toDto(comment);
     }
