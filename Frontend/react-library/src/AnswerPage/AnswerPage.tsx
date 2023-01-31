@@ -86,11 +86,11 @@ export default function AnswerPage() {
         <TableBody>
           {articles.map((article) => (
             <TableRow
-              key={article.userName}
+              key={article.viewSelf.split("/")[5]}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-              <Link className={styles.link} to={`/boards/${Number(article.viewSelf.charAt(article.viewSelf.length-1))}`}>{article.title}</Link>
+              <Link className={styles.link} to={`/boards/${article.viewSelf.split("/")[5]}`}>{article.title}</Link>
               </TableCell>
               <TableCell align="center">
                 {article.userName}
