@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { Comment } from "../Components/Comment";
 import axios from "axios";
-import { NorthWest } from "@mui/icons-material";
+import moment from "moment";
+import "moment/locale/ko";
 
 export const Answer = () => {
   const now = new Date();
@@ -131,7 +132,8 @@ export const Answer = () => {
       </div>
       <div className={styles.form}>
         <form onSubmit={submitData}>
-          <textarea className={styles.textarea}
+          <textarea
+            className={styles.textarea}
             placeholder="댓글을 입력하세요."
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
@@ -143,21 +145,26 @@ export const Answer = () => {
       <div className={styles.container}>
         <div className={styles.commentTitle}>댓글</div>
         {comments.map((comment) => (
-          <>
+          <div key={comment.viewSelf.split("/")[5]}>
             <div className={styles.profile}>
               <div className={styles.userName}>{comment.userName}</div>
               <div className={styles.createAt}>
-                {comment.createAt.split("T")[0]}
+                {comment.createAt.replace("T", " ")}
               </div>
+              {comment.createAt !== comment.modifiedAt && comment.modifiedAt !== undefined? (
+                <div className={styles.createAt}>
+                  수정됨(
+                  {moment(comment.modifiedAt).format("YYYY-MM-DD HH:mm:ss")})
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
             <div className={styles.content}>
-              <Comment
-                comment={comment}
-                key={Number(comment.viewSelf.split("/")[5])}
-              />
+              <Comment comment={comment} />
             </div>
             <hr />
-          </>
+          </div>
         ))}
       </div>
     </div>
