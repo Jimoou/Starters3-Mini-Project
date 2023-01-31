@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/api")
 public class CommentController {
 
@@ -29,9 +29,8 @@ public class CommentController {
 
     //댓글 수정
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/comment/update/{id}")
+    @PutMapping("/comments/update/{id}")
     public void updateComment(@PathVariable Long id, @RequestBody CommentDto commentDto){
         commentService.updateComment(id,commentDto);
-        System.out.println(id);
     }
 }
