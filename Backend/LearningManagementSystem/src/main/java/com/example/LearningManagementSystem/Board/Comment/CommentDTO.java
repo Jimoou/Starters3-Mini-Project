@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentDto {
+public class CommentDTO {
     private Long id;
     private Board board;
     private String userName;
@@ -18,8 +18,8 @@ public class CommentDto {
     private LocalDateTime createAt;
     private LocalDateTime modifiedAt;
 
-    public static CommentDto toDto(Comment comment) {
-        return new CommentDto(
+    public static CommentDTO toDto(Comment comment) {
+        return new CommentDTO(
                 comment.getId(),
                 comment.getBoard(),
                 comment.getUserName(),

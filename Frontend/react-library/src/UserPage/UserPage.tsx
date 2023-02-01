@@ -7,18 +7,19 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import styles from "../Stylesheet/UserPage.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserModel from "../Models/UserModel";
 import { SpinnerLoading } from "../Util/SpinnerLoading";
 import { Link } from "react-router-dom";
-import { yellow } from "@mui/material/colors";
+import axios from "axios";
 
 export default function UserPage() {
   const [users, setUsers] = useState<UserModel[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
-
-  React.useEffect(() => {
+  const [status, setStatus] = useState("");
+  const [userNo, setUserNo] = useState(0);
+  useEffect(() => {
     const fetchUsers = async () => {
       const baseUrl: string = "http://localhost:8080/api/users";
 
@@ -56,6 +57,38 @@ export default function UserPage() {
     });
   }, []);
 
+  const submitData = async (e: any) => {
+    e.preventDefault();
+    await axios
+      .put(`http://localhost:8080/api/users/update/${userNo}`, {
+        userStatus: status,
+      })
+      .then((response) => {
+        alert("수정되었습니다.");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const caseColor = (props: any) => {
+    switch (props) {
+      case "수료":
+        return <span style={{ color: "blue" }}>수료</span>;
+      case "인턴예정":
+        return <span style={{ color: "orange" }}>인턴예정</span>;
+      case "교육중":
+        return <span style={{ color: "green" }}>교육중</span>;
+      case "미수료":
+        return <span style={{ color: "gray" }}>미수료</span>;
+      case "퇴소":
+        return <span style={{ color: "red" }}>퇴소</span>;
+      default:
+        return <span>{props}</span>;
+    }
+  };
+
   if (isLoading) {
     return (
       <>
@@ -91,12 +124,14 @@ export default function UserPage() {
             </TableHead>
             <TableBody>
               {users.map((user) => (
-                <TableRow className={styles.tableRow}
-                  key={user.userName}
+                <TableRow
+                  className={styles.tableRow}
+                  key={user.userId}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    <Link className={styles.link}
+                    <Link
+                      className={styles.link}
                       to={`/users/${Number(
                         user.viewSelf.charAt(user.viewSelf.length - 1)
                       )}`}
@@ -112,21 +147,28 @@ export default function UserPage() {
                     {user.userBirth.split("T")[0]}
                   </TableCell>
                   <TableCell align="center">
-                    <form>
-                    <select>
-                      <option>수료</option>
-                      <option>미수료</option>
-                      <option>인턴예정</option>
-                      <option selected>교육중</option>
-                      <option>퇴소</option>
-                    </select>
-                    <button type="button">수정</button>
+                    <form onSubmit={submitData}>
+                      <select
+                        onChange={(e) => {
+                          setStatus(e.target.value);
+                          setUserNo(Number(user.viewSelf.split("/")[5]));
+                        }}
+                      >
+                        <option value="수료">수료</option>
+                        <option value="미수료">미수료</option>
+                        <option value="인턴예정">인턴예정</option>
+                        <option value="교육중">
+                          교육중
+                        </option>
+                        <option value="퇴소">퇴소</option>
+                      </select>
+                      <button type="submit">수정</button>
                     </form>
                   </TableCell>
                   {user.userStatus === undefined ? (
-                    <TableCell align="center">{user.userStatus}</TableCell>
+                    <TableCell align="center">--</TableCell>
                   ) : (
-                    <TableCell align="center">교육 중</TableCell>
+                    <TableCell align="center">{caseColor(user.userStatus)}</TableCell>
                   )}
                 </TableRow>
               ))}
