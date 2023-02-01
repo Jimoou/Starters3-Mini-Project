@@ -18,7 +18,7 @@ public class CommentController {
     //댓글 작성
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/board/{boardId}/comments")
-     public void postComment(@PathVariable Long boardId, @RequestBody CommentDto commentDto){
+     public void postComment(@PathVariable Long boardId, @RequestBody CommentDTO commentDto){
         commentService.postComment(boardId,commentDto);
     }
 
@@ -30,7 +30,7 @@ public class CommentController {
     //댓글 수정
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/comments/update/{id}")
-    public void updateComment(@PathVariable Long id, @RequestBody CommentDto commentDto){
+    public void updateComment(@PathVariable Long id, @RequestBody CommentDTO commentDto){
         commentService.updateComment(id,commentDto);
     }
 }

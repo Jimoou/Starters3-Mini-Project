@@ -15,7 +15,7 @@ public class CommentService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public CommentDto postComment(Long boardId, CommentDto commentDto){
+    public CommentDTO postComment(Long boardId, CommentDTO commentDto){
         Comment comment = new Comment();
         comment.setUserName(commentDto.getUserName());
         comment.setContent(commentDto.getContent());
@@ -29,20 +29,20 @@ public class CommentService {
         comment.setModifiedAt(null);
         commentRepository.save(comment);
 
-        return CommentDto.toDto(comment);
+        return CommentDTO.toDto(comment);
     }
 
     @Transactional
-    public CommentDto deleteComment(Long id){
+    public CommentDTO deleteComment(Long id){
         Comment comment = commentRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("댓글을 찾을 수 없습니다.");
         });
         commentRepository.delete(comment);
-        return CommentDto.toDto(comment);
+        return CommentDTO.toDto(comment);
     }
 
     @Transactional
-    public CommentDto updateComment(Long id, CommentDto commentDto){
+    public CommentDTO updateComment(Long id, CommentDTO commentDto){
         Comment comment = commentRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("댓글을 찾을 수 없습니다.");
         });
@@ -50,6 +50,6 @@ public class CommentService {
         comment.setContent(commentDto.getContent());
         comment.setModifiedAt(commentDto.getModifiedAt());
 
-        return CommentDto.toDto(comment);
+        return CommentDTO.toDto(comment);
     }
 }
