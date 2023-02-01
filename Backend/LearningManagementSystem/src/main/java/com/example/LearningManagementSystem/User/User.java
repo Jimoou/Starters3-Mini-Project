@@ -38,5 +38,5 @@ public class User{
 
     private LocalDateTime userBirth;
 
-    private Long userStatus;
+    private String userStatus;
 }
