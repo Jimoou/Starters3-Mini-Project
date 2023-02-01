@@ -1,4 +1,3 @@
-import { notDeepEqual } from "assert";
 import axios from "axios";
 import { useState } from "react";
 import CommentModel from "../../Models/CommentModel";
@@ -45,9 +44,9 @@ export const Comment: React.FC<{ comment: CommentModel }> = (props) => {
         modifiedAt: modifiedAt,
       })
       .then((response) => {
-        setCheck(true);
         alert("수정되었습니다.");
         window.location.reload();
+        setCheck(true);
       })
       .catch((error) => {
         console.log(error);
