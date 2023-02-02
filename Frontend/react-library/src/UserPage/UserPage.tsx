@@ -12,12 +12,13 @@ import UserModel from "../Models/UserModel";
 import { SpinnerLoading } from "../Util/SpinnerLoading";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { CaseColor } from "../Util/CaseColor";
 
 export default function UserPage() {
   const [users, setUsers] = useState<UserModel[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("수료");
   const [userNo, setUserNo] = useState(0);
   useEffect(() => {
     const fetchUsers = async () => {
@@ -72,23 +73,6 @@ export default function UserPage() {
       });
   };
 
-  const caseColor = (props: any) => {
-    switch (props) {
-      case "수료":
-        return <span style={{ color: "blue" }}>수료</span>;
-      case "인턴예정":
-        return <span style={{ color: "orange" }}>인턴예정</span>;
-      case "교육중":
-        return <span style={{ color: "green" }}>교육중</span>;
-      case "미수료":
-        return <span style={{ color: "gray" }}>미수료</span>;
-      case "퇴소":
-        return <span style={{ color: "red" }}>퇴소</span>;
-      default:
-        return <span>{props}</span>;
-    }
-  };
-
   if (isLoading) {
     return (
       <>
@@ -109,10 +93,10 @@ export default function UserPage() {
       <div className={styles.main}>
         <hr />
         <TableContainer component={Paper} className={styles.tablecontainer}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ minWidth: 500 }} aria-label="simple table">
             <TableHead className={styles.tablehead}>
               <TableRow>
-                <TableCell>이름</TableCell>
+                <TableCell align="center">이름</TableCell>
                 <TableCell align="center">아이디</TableCell>
                 <TableCell align="center">연락처</TableCell>
                 <TableCell align="center">이메일</TableCell>
@@ -122,18 +106,18 @@ export default function UserPage() {
                 <TableCell align="center">비고</TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody >
               {users.map((user) => (
                 <TableRow
                   className={styles.tableRow}
                   key={user.userId}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row" align="center">
                     <Link
                       className={styles.link}
                       to={`/users/${Number(
-                        user.viewSelf.charAt(user.viewSelf.length - 1)
+                        user.viewSelf.split("/")[5]
                       )}`}
                     >
                       {user.userName}
@@ -142,33 +126,40 @@ export default function UserPage() {
                   <TableCell align="center">{user.userId}</TableCell>
                   <TableCell align="center">{user.userPhone}</TableCell>
                   <TableCell align="center">{user.userEmail}</TableCell>
-                  <TableCell align="center">{user.userAddr}</TableCell>
+                  <TableCell align="center" className={styles.addr}>{user.userAddr}</TableCell>
                   <TableCell align="center">
                     {user.userBirth.split("T")[0]}
                   </TableCell>
                   <TableCell align="center">
                     <form onSubmit={submitData}>
                       <select
+                        defaultValue={status}
                         onChange={(e) => {
                           setStatus(e.target.value);
-                          setUserNo(Number(user.viewSelf.split("/")[5]));
                         }}
                       >
                         <option value="수료">수료</option>
                         <option value="미수료">미수료</option>
                         <option value="인턴예정">인턴예정</option>
-                        <option value="교육중">
-                          교육중
-                        </option>
+                        <option value="교육중">교육중</option>
                         <option value="퇴소">퇴소</option>
                       </select>
-                      <button type="submit">수정</button>
+                      <button
+                        type="submit"
+                        onClick={() =>
+                          setUserNo(Number(user.viewSelf.split("/")[5]))
+                        }
+                      >
+                        수정
+                      </button>
                     </form>
                   </TableCell>
                   {user.userStatus === undefined ? (
                     <TableCell align="center">--</TableCell>
                   ) : (
-                    <TableCell align="center">{caseColor(user.userStatus)}</TableCell>
+                    <TableCell align="center">
+                      {CaseColor(user.userStatus)}
+                    </TableCell>
                   )}
                 </TableRow>
               ))}

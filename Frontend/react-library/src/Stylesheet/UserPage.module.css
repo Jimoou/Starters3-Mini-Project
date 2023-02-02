@@ -3,7 +3,6 @@
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    
 }
 
 .tablecontainer {
@@ -20,4 +19,10 @@
 .link {
     text-decoration: none;
     color: black;
+}
+.addr {
+    width: 22%;
+}
+.tableRow:hover {
+    background-color:bisque;
 }
