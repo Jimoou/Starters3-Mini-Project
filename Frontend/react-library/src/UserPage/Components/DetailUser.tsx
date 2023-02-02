@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import UserModel from "../../Models/UserModel";
 import styles from "../../Stylesheet/DetailUser.module.css";
+import { CaseColor } from "../../Util/CaseColor";
 import { SpinnerLoading } from "../../Util/SpinnerLoading";
 
 export const DetailUser = () => {
   const [user, setUser] = useState<UserModel>();
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState(null);
-
-  const userId = window.location.pathname.split("/")[2];
-
+  
   useEffect(() => {
+    const userId = window.location.pathname.split("/")[2];
     const fetchArticle = async () => {
       const baseUrl: string = `http://localhost:8080/api/users/${userId}`;
       const response = await fetch(baseUrl);
@@ -85,14 +85,14 @@ export const DetailUser = () => {
             {user?.userRegDate.split("T")[0]}
           </div>
           <hr />
-          {user?.userStatus === undefined ? (
+          {user?.userStatus !== undefined ? (
             <div className={styles.status}>
               <p className={styles.smallheader}>특이사항</p>
-              {user?.userStatus}
+              {CaseColor(user?.userStatus)}
             </div>
           ) : (
             <div className={styles.status}>
-              <p className={styles.smallheader}>특이사항</p>교육중
+              <p className={styles.smallheader}>특이사항</p>없음
             </div>
           )}
         </div>
