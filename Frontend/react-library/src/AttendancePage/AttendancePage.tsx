@@ -1,5 +1,4 @@
 import {
-  Link,
   Paper,
   Table,
   TableBody,
@@ -66,6 +65,7 @@ export const AttendancePage = () => {
       <div>
         <h1 className={styles.header}>출결 관리</h1>
         <div className={styles.main}>
+          <h3 className={styles.header}>1월</h3>
           <hr />
           <TableContainer component={Paper} className={styles.tablecontainer}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

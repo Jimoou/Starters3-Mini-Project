@@ -18,15 +18,15 @@ export const Sidebar = () => {
           <GradingIcon className={styles.Icon} />
           <div className={styles.menudata}>성적 관리</div>
         </Link>
-        <Link to='/answer' className={styles.container2}>
+        <Link to="/answer" className={styles.container2}>
           <QuestionAnswerIcon className={styles.Icon} />
           <div className={styles.menudata}>Q&A 답변하기</div>
         </Link>
-        <Link to='/attendance' className={styles.container2}>
+        <Link to="/attendance" className={styles.container2}>
           <RuleIcon className={styles.Icon} />
           <div className={styles.menudata}>출결 관리</div>
         </Link>
-        <Link to='/users' className={styles.container2}>
+        <Link to="/users" className={styles.container2}>
           <PeopleIcon className={styles.Icon} />
           <div className={styles.menudata}>구성원 관리</div>
         </Link>
